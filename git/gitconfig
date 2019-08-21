@@ -1,0 +1,9 @@
+[user]
+	name = Jack Myers
+	email = jackmyers001@gmail.com
+[color]
+	ui = true
+[core]
+	editor = nano
+[url "https://github.com/"]
+	insteadOf = git@github.com:
