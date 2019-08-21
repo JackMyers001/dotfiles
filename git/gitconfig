@@ -5,5 +5,5 @@
 	ui = true
 [core]
 	editor = nano
-[url "https://github.com/"]
-	insteadOf = git@github.com:
+[url "git@github.com:"]
+	insteadOf = https://github.com/
