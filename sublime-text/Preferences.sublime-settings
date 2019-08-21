@@ -1,0 +1,10 @@
+{
+	"color_scheme": "Monokai Pro.sublime-color-scheme",
+	"font_face": "Source Code Pro",
+	"font_size": 14,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "Monokai Pro.sublime-theme"
+}
