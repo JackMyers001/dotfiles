@@ -8,3 +8,4 @@ ln -s ${BASEDIR}/zsh/zshenv ~/.zshenv
 
 # git
 ln -s ${BASEDIR}/git/gitconfig ~/.gitconfig
+ln -s ${BASEDIR}/git/gitignore ~/.gitignore

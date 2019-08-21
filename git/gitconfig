@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	editor = nano
+	excludesfile = /home/jmyers/.gitignore
 [url "https://github"]
 	insteadOf = git://github
 [credential]
