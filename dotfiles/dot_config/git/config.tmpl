@@ -1,8 +1,78 @@
+[branch]
+	# Sort branches by newest commit first
+	sort = -committerdate
+
+[column]
+	# Display `git branch` output in columns
+	ui = auto
+
+[commit]
+	# Show diff in commit message editor
+	verbose = true
+
+[diff]
+	# Better diff output
+	algorithm = histogram
+
+	# Highlight moved vs added code in `git diff`
+	colorMoved = plain
+
+	# Use i/ (index), w/ (working), c/ (commit) prefixes instead of a/b/
+	mnemonicPrefix = true
+
+	# Detect renamed (moved) files
+	renames = true
+
+[fetch]
+	# Fetch all branches and tags, removing any stale references
+	all = true
+	prune = true
+	pruneTags = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
 	required = true
 	smudge = git-lfs smudge -- %f
+
+[help]
+	# Suggest fixes for mistyped commands
+	autocorrect = prompt
+
+[pull]
+	# Rebase instead of merge when pulling
+	rebase = true
+
+[push]
+	# Use same branch name on remote
+	default = simple
+
+	# Auto-setup remote tracking for new branches
+	autoSetupRemote = true
+
+	# Include tags when pushing
+	followTags = true
+
+[rebase]
+	# Auto-squash fixup commits
+	autoSquash = true
+
+	# Auto-stash before rebasing
+	autoStash = true
+
+	# Update branches that depend on rebased branch
+	updateRefs = true
+
+[rerere]
+	# Remember rebase conflict resolutions
+	enabled = true
+
+	# Auto-apply remembered resolutions
+	autoupdate = true
+
+[tag]
+	# Sort tags by version number
+	sort = version:refname
 
 [user]
 	name = Jack Myers
