@@ -1,7 +1,9 @@
-{{ if .useOpenSshUserAgent -}}
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/socket-agent.socket"
-{{- end }}
+if [[ -z "${SSH_CONNECTION}" ]]; then
+    {{ if .useOpenSshUserAgent -}}
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/socket-agent.socket"
+    {{- end }}
 
-{{ if .useSecretiveSshAgent -}}
-export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
-{{- end }}
+    {{ if .useSecretiveSshAgent -}}
+    export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+    {{- end }}
+fi
