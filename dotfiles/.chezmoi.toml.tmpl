@@ -1,4 +1,13 @@
+{{- /* Feature flags */ -}}
+{{- $useSecretiveSshAgent := false -}}
+
+{{- /* User prompts */ -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-     $useSecretiveSshAgent = promptBoolOnce . "useSecretiveSshAgent" "Use Secretive as SSH agent" -}}
+{{- end -}}
 
 [data]
     email = {{ $email | quote }}
+    useSecretiveSshAgent = {{ $useSecretiveSshAgent }}
