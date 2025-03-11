@@ -39,6 +39,13 @@
 	# Suggest fixes for mistyped commands
 	autocorrect = prompt
 
+[merge]
+	tool = smerge
+
+[mergetool "smerge"]
+	cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+	trustExitCode = true
+
 [pull]
 	# Rebase instead of merge when pulling
 	rebase = true
