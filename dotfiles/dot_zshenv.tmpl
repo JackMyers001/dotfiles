@@ -7,3 +7,7 @@ if [[ -z "${SSH_CONNECTION}" ]]; then
     export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
     {{- end }}
 fi
+
+path+=("$HOME/.cargo/bin")
+path+=("$HOME/.krew/bin")
+path+=("$HOME/.local/bin")
