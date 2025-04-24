@@ -1,3 +1,9 @@
+# Autostart Zellij. Must come before p10k instant prompt
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+  export ZELLIJ_AUTO_EXIT=true
+  eval "$(zellij setup --generate-auto-start zsh)"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
