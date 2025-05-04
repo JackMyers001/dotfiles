@@ -1,10 +1,10 @@
 if [[ -z "${SSH_CONNECTION}" ]]; then
-    {{ if .useOpenSshUserAgent -}}
-    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/socket-agent.socket"
-    {{- end }}
-
-    {{ if .useSecretiveSshAgent -}}
+    {{- if eq .sshAgent "bitwarden-flatpak" }}
+    export SSH_AUTH_SOCK="$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
+    {{- else if eq .sshAgent "secretive" }}
     export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+    {{- else if eq .sshAgent "ssh-user-agent" }}
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/socket-agent.socket"
     {{- end }}
 fi
 
