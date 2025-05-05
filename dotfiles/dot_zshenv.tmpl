@@ -10,6 +10,10 @@ if [[ -z "${SSH_CONNECTION}" ]]; then
     {{- end }}
 fi
 
+{{- if eq .osID "linux-bazzite" }}
+path+=("/home/linuxbrew/.linuxbrew/bin")
+{{- end }}
+
 path+=("$HOME/.cargo/bin")
 path+=("$HOME/.krew/bin")
 path+=("$HOME/.local/bin")
