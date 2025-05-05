@@ -5,6 +5,8 @@ if [[ -z "${SSH_CONNECTION}" ]]; then
     export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
     {{- else if eq .sshAgent "ssh-user-agent" }}
     export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/socket-agent.socket"
+    {{- else if eq .sshAgent "wsl2-ssh-agent" }}
+    export SSH_AUTH_SOCK="$HOME/.ssh/wsl2-ssh-agent.sock"
     {{- end }}
 fi
 

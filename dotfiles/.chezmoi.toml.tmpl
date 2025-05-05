@@ -21,6 +21,11 @@
 {{-   $sshAgentChoices = append $sshAgentChoices "secretive" -}}
 {{- end -}}
 
+{{- /* Selection generation */ -}}
+{{- if eq $isWsl true -}}
+{{-   $sshAgentChoices = append $sshAgentChoices "wsl2-ssh-agent" -}}
+{{- end -}}
+
 {{- /* User prompts */ -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $sshAgent = promptChoiceOnce . "sshAgent" "What SSH agent do you want to use" $sshAgentChoices -}}
