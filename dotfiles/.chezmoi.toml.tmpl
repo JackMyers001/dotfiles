@@ -1,8 +1,16 @@
 {{- /* Feature flags */ -}}
+{{- $isWsl := false -}}
 {{- $sshAgent := "none" -}}
 
 {{- /* Choices */ -}}
 {{- $sshAgentChoices := list "none" -}}
+
+{{- /* Detect if running in WSL2 */ -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-     $isWsl = true -}}
+{{-   end -}}
+{{- end -}}
 
 {{- if eq .chezmoi.os "linux" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-flatpak" -}}
@@ -19,4 +27,5 @@
 
 [data]
     email = {{ $email | quote }}
+    isWsl = {{ $isWsl }}
     sshAgent = {{ $sshAgent | quote }}
