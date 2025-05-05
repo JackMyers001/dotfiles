@@ -5,6 +5,12 @@
 {{- /* Choices */ -}}
 {{- $sshAgentChoices := list "none" -}}
 
+{{- /* Combine OS and distro into a single string (e.g. `linux-debian`) */ -}}
+{{- $osID := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-     $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
 {{- /* Detect if running in WSL2 */ -}}
 {{- if eq .chezmoi.os "linux" -}}
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
@@ -33,4 +39,5 @@
 [data]
     email = {{ $email | quote }}
     isWsl = {{ $isWsl }}
+    osID = {{ $osID | quote }}
     sshAgent = {{ $sshAgent | quote }}
