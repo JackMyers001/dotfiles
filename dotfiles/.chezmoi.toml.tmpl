@@ -24,6 +24,7 @@
 {{- end -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
+{{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-macos" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "secretive" -}}
 {{- end -}}
 
