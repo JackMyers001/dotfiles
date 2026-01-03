@@ -1,8 +1,32 @@
+_should_autostart_zellij() {
+  ZELLIJ_AUTOSTART_TERMINALS=(
+    ghostty
+    iTerm.app
+  )
+
+  # Don't autostart in non-interactive shells
+  [[ $- != *i* ]] && return 1
+
+  # Don't autostart if already inside Zellij or tmux
+  [[ -n $ZELLIJ || -n $TMUX ]] && return 1
+
+  # Autostart if in a recognized terminal
+  (( ${ZELLIJ_AUTOSTART_TERMINALS[(Ie)$TERM_PROGRAM]} )) && return 0
+
+  # Autostart if in Windows Terminal (workaround because it doesn't set
+  # TERM_PROGRAM)
+  [[ -n $WT_SESSION ]] && return 0
+
+  return 1
+}
+
 # Autostart Zellij. Must come before p10k instant prompt
-if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+if _should_autostart_zellij; then
   export ZELLIJ_AUTO_EXIT=true
   eval "$(zellij setup --generate-auto-start zsh)"
 fi
+
+unfunction _should_autostart_zellij
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
