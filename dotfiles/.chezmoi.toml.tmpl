@@ -20,6 +20,7 @@
 
 {{- if eq .chezmoi.os "linux" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-flatpak" -}}
+{{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-standalone" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "ssh-user-agent" -}}
 {{- end -}}
 
