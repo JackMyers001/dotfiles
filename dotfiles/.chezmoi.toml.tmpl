@@ -5,10 +5,10 @@
 {{- /* Choices */ -}}
 {{- $sshAgentChoices := list "none" -}}
 
-{{- /* Combine OS and distro into a single string (e.g. `linux-debian`) */ -}}
-{{- $osID := .chezmoi.os -}}
+{{- /* Platform detection (combines OS and distro into a single string like `linux-debian`) */ -}}
+{{- $platformId := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
-{{-     $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{-   $platformId = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
 {{- /* Detect if running in WSL2 */ -}}
@@ -43,5 +43,5 @@
     autostartZellig = {{ $autostartZellig }}
     email = {{ $email | quote }}
     isWsl = {{ $isWsl }}
-    osID = {{ $osID | quote }}
+    platformId = {{ $platformId | quote }}
     sshAgent = {{ $sshAgent | quote }}
