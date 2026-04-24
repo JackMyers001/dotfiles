@@ -29,9 +29,26 @@
 {{- $autostartZellig := promptBoolOnce . "autostartZellig" "Do you want to autostart Zellij?" -}}
 {{- $sshAgent := promptChoiceOnce . "sshAgent" "What SSH agent do you want to use" $sshAgentChoices -}}
 
+{{- /* Derived values */ -}}
+{{- $sshAuthSock := "" -}}
+{{- if eq $sshAgent "bitwarden-flatpak" -}}
+{{-   $sshAuthSock = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock" -}}
+{{- else if eq $sshAgent "bitwarden-macos" -}}
+{{-   $sshAuthSock = "$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock" -}}
+{{- else if eq $sshAgent "bitwarden-standalone" -}}
+{{-   $sshAuthSock = "$HOME/.bitwarden-ssh-agent.sock" -}}
+{{- else if eq $sshAgent "secretive" -}}
+{{-   $sshAuthSock = "$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" -}}
+{{- else if eq $sshAgent "ssh-user-agent" -}}
+{{-   $sshAuthSock = "$XDG_RUNTIME_DIR/socket-agent.socket" -}}
+{{- else if eq $sshAgent "wsl2-ssh-agent" -}}
+{{-   $sshAuthSock = "$HOME/.ssh/wsl2-ssh-agent.sock" -}}
+{{- end -}}
+
 [data]
     autostartZellig = {{ $autostartZellig }}
     email = {{ $email | quote }}
     isWsl = {{ $isWsl }}
     platformId = {{ $platformId | quote }}
     sshAgent = {{ $sshAgent | quote }}
+    sshAuthSock = {{ $sshAuthSock | quote }}
