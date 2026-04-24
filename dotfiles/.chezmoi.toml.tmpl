@@ -1,5 +1,4 @@
 {{- /* Feature flags */ -}}
-{{- $isWsl := false -}}
 {{- $sshAgent := "none" -}}
 
 {{- /* Choices */ -}}
@@ -11,12 +10,7 @@
 {{-   $platformId = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{- /* Detect if running in WSL2 */ -}}
-{{- if eq .chezmoi.os "linux" -}}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-{{-     $isWsl = true -}}
-{{-   end -}}
-{{- end -}}
+{{- $isWsl := and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 
 {{- if eq .chezmoi.os "linux" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-flatpak" -}}
