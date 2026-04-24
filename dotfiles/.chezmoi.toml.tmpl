@@ -1,9 +1,3 @@
-{{- /* Feature flags */ -}}
-{{- $sshAgent := "none" -}}
-
-{{- /* Choices */ -}}
-{{- $sshAgentChoices := list "none" -}}
-
 {{- /* Platform detection (combines OS and distro into a single string like `linux-debian`) */ -}}
 {{- $platformId := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
@@ -11,6 +5,9 @@
 {{- end -}}
 
 {{- $isWsl := and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+
+{{- /* SSH agent choices */ -}}
+{{- $sshAgentChoices := list "none" -}}
 
 {{- if eq .chezmoi.os "linux" -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "bitwarden-flatpak" -}}
@@ -23,7 +20,6 @@
 {{-   $sshAgentChoices = append $sshAgentChoices "secretive" -}}
 {{- end -}}
 
-{{- /* Selection generation */ -}}
 {{- if $isWsl -}}
 {{-   $sshAgentChoices = append $sshAgentChoices "wsl2-ssh-agent" -}}
 {{- end -}}
@@ -31,7 +27,7 @@
 {{- /* User prompts */ -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $autostartZellig := promptBoolOnce . "autostartZellig" "Do you want to autostart Zellij?" -}}
-{{- $sshAgent = promptChoiceOnce . "sshAgent" "What SSH agent do you want to use" $sshAgentChoices -}}
+{{- $sshAgent := promptChoiceOnce . "sshAgent" "What SSH agent do you want to use" $sshAgentChoices -}}
 
 [data]
     autostartZellig = {{ $autostartZellig }}
