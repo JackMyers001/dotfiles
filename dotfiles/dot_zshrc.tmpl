@@ -1,3 +1,4 @@
+{{- if .autostartZellig }}
 _should_autostart_zellij() {
   ZELLIJ_AUTOSTART_TERMINALS=(
     ghostty
@@ -27,6 +28,7 @@ if _should_autostart_zellij; then
 fi
 
 unfunction _should_autostart_zellij
+{{- end }}
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

@@ -36,9 +36,11 @@
 
 {{- /* User prompts */ -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $autostartZellig := promptBoolOnce . "autostartZellig" "Do you want to autostart Zellij?" -}}
 {{- $sshAgent = promptChoiceOnce . "sshAgent" "What SSH agent do you want to use" $sshAgentChoices -}}
 
 [data]
+    autostartZellig = {{ $autostartZellig }}
     email = {{ $email | quote }}
     isWsl = {{ $isWsl }}
     osID = {{ $osID | quote }}
