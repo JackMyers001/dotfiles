@@ -1,0 +1,40 @@
+set fish_greeting ""
+
+# === Environment Variables ===
+
+{{- if .sshAuthSock }}
+if not set -q SSH_CONNECTION
+    set -x SSH_AUTH_SOCK "{{ .sshAuthSock }}"
+end
+{{- end }}
+
+# Set EDITOR
+if set -q SSH_CONNECTION
+    set -gx EDITOR nano
+else if command -q code
+    set -gx EDITOR "code --wait"
+else
+    set -gx EDITOR nano
+end
+
+# === PATH ===
+
+{{- if eq .platformId "darwin" }}
+eval $(/opt/homebrew/bin/brew shellenv)
+{{- end }}
+
+fish_add_path ~/.cargo/bin
+fish_add_path ~/.krew/bin
+fish_add_path ~/.local/bin
+
+# Only run the rest of the config if we're in an interactive shell
+status is-interactive || exit
+
+# === Appearance ===
+
+fish_config theme choose "Dracula Official"
+
+# === Keybindings ===
+
+bind alt-backspace backward-kill-word
+fzf_configure_bindings --directory=ctrl-f --git_status=ctrl-s
