@@ -23,6 +23,10 @@ end
 eval $(/opt/homebrew/bin/brew shellenv)
 {{- end }}
 
+if command -q mise
+    mise activate fish | source
+end
+
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.krew/bin
 fish_add_path ~/.local/bin
