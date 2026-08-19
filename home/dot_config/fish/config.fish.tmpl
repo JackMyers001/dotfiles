@@ -19,6 +19,11 @@ else
     set -gx EDITOR nano
 end
 
+# Set PAGER
+if type -q moor
+    set -gx PAGER moor
+end
+
 # === PATH ===
 
 {{- if eq .platformId "darwin" }}
