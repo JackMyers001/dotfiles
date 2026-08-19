@@ -26,7 +26,11 @@ eval $(/opt/homebrew/bin/brew shellenv)
 {{- end }}
 
 if command -q mise
-    mise activate fish | source
+    if status is-interactive
+        mise activate fish | source
+    else
+        mise activate fish --shims | source
+    end
 end
 
 fish_add_path ~/.cargo/bin
