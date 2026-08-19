@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+# mise_config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
+if type -q mise
+    mise install
+end
