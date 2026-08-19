@@ -1,0 +1,19 @@
+{
+    "editor.bracketPairColorization.enabled": false,
+    "editor.find.seedSearchStringFromSelection": "selection",
+    "editor.fontFamily": "'BerkeleyMono Nerd Font', monospace",
+    "editor.fontSize": 16,
+
+    "explorer.compactFolders": false,
+
+    "git.blame.editorDecoration.enabled": true,
+
+    "workbench.colorTheme": "Dracula Theme",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+    "workbench.editor.wrapTabs": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 20,
+    "workbench.tree.renderIndentGuides": "always",
+}
