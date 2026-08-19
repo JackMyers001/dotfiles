@@ -1,0 +1,28 @@
+font-family = BerkeleyMono Nerd Font
+
+theme = Dracula
+
+mouse-hide-while-typing = true
+
+shell-integration-features = ssh-env,ssh-terminfo,sudo
+
+# Always open new windows in the home directory
+window-inherit-working-directory = false
+working-directory = home
+
+window-width = 120
+window-height = 40
+
+{{- if eq .platformId "darwin" }}
+macos-icon = blueprint
+macos-non-native-fullscreen = visible-menu
+macos-titlebar-proxy-icon = hidden
+
+# Make Option key act as Alt
+macos-option-as-alt = true
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+{{- end }}
+
+# Optional machine-specific config
+config-file = ?local.ghostty
