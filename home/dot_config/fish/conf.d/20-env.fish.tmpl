@@ -1,0 +1,21 @@
+{{- if .sshAuthSock }}
+if not set -q SSH_CONNECTION
+    set -x SSH_AUTH_SOCK "{{ .sshAuthSock }}"
+end
+{{- end }}
+
+# EDITOR
+if set -q SSH_CONNECTION
+    set -gx EDITOR nano
+else if type -q code
+    set -gx EDITOR "code --wait"
+else
+    set -gx EDITOR nano
+end
+
+# PAGER
+if type -q moor
+    set -gx PAGER moor
+end
+
+set -gx PNPM_HOME ~/.local/share/pnpm
