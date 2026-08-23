@@ -1,3 +1,5 @@
+status is-interactive; or exit
+
 if type -q bat
     abbr cat bat
 end
