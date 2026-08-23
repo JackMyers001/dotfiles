@@ -40,6 +40,9 @@
 	autocorrect = prompt
 
 [merge]
+	# Include the common ancestor in conflict markers
+	conflictStyle = zdiff3
+
 	tool = smerge
 
 [mergetool "smerge"]
@@ -87,3 +90,21 @@
 [user]
 	name = Jack Myers
 	email = {{ .email }}
+
+{{- if lookPath "delta" }}
+[core]
+	pager = delta
+
+[delta]
+	# Use n and N to move between diff sections (doesn't work with `moor` PAGER)
+	navigate = true
+
+	# Show old and new content across two panes
+	side-by-side = true
+
+	syntax-theme = Dracula
+
+[interactive]
+	# Highlight hunks with delta in `git add -p` etc.
+	diffFilter = delta --color-only
+{{- end }}
