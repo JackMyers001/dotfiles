@@ -48,6 +48,7 @@ talosctl = "latest"
 uv = "latest"
 yq = "latest"
 zizmor = "latest"
+zoxide = "latest"
 
 [settings.ruby]
 # Error out during install if precompiled Ruby is not available from github.com/jdx/ruby
